@@ -1,0 +1,2 @@
+import os
+print([print(f"GIT:{d}|{'dirty' if os.path.exists(os.path.join(d, '.git')) and os.system(f'cd {d} && git diff --quiet') else 'clean' if os.path.exists(os.path.join(d, '.git')) else 'no-git'}") for d in os.listdir('.') if os.path.isdir(d) and (d.startswith('deepiri-') or d.startswith('diri-'))])
