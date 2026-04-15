@@ -1,0 +1,2 @@
+import os, sys
+print([print(f"HEALTH:{d}|{'✓' if os.path.exists(d+'/pyproject.toml') or os.path.exists(d+'/requirements.txt') else '✗'}") for d in os.listdir('.') if os.path.isdir(d) and (d.startswith('deepiri-') or d.startswith('diri-'))])
