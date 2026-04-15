@@ -1,7 +1,7 @@
 import os
 root = '/home/joeblack/Documents/Deepiri'
 print("╔═══════════════════════════════════════════════════════════════════╗")
-print("║             📝 DEEPIRI VOX - PROJECT DOCS CHECK                    ║")
+print("║             DEEPIRI VOX - PROJECT DOCS CHECK                    ║")
 print("╚═══════════════════════════════════════════════════════════════════╝")
 print()
 
