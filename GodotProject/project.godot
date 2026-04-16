@@ -3,14 +3,21 @@ config_version=5
 
 [application]
 
-config/name="Fox Rocket Arcade"
+config/name="Deepiri Voxier"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+EventBus="*res://scripts/autoload/event_bus.gd"
+GameAudio="*res://scripts/autoload/game_audio.gd"
+DeepiriPaths="*res://scripts/autoload/deepiri_paths.gd"
 GameManager="*res://scripts/game_manager.gd"
+
+[gui]
+
+theme/custom="res://themes/deepiri_theme.tres"
 
 [display]
 
