@@ -11,7 +11,7 @@ enemy_type = 0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1, 0.27, 0.27, 1)
-polygon = PackedVector2Array([Vector2(0, -15), Vector2(15, 15), Vector2(-15, 15)])
+polygon = PackedVector2Array(0, -15, 15, 15, -15, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
