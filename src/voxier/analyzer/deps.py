@@ -1,2 +1,0 @@
-import os, json, sys
-print([print(f"DEPS:{d}|{len(json.load(open(f'../{d}/package.json'))['dependencies']) if os.path.exists(f'../{d}/package.json') and 'dependencies' in json.load(open(f'../{d}/package.json')) else 'N/A'}") for d in os.listdir('.') if os.path.isdir(d) and (d.startswith('deepiri-') or d.startswith('diri-'))])
