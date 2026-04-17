@@ -11,10 +11,22 @@ const _Scenes := preload("res://scripts/ui/scene_registry.gd")
 
 @onready var vox_btn: Button = $UI/StartPanel/VBox/VoxBtn
 @onready var cat_btn: Button = $UI/StartPanel/VBox/CatBtn
+@onready var _speed_lines: CPUParticles2D = $SpeedFX/SpeedLines
 
 func _ready():
 	vox_btn.pressed.connect(_on_vox_pressed)
 	cat_btn.pressed.connect(_on_cat_pressed)
+
+
+func _process(_delta: float) -> void:
+	if _speed_lines == null:
+		return
+	var st := GameManager.state
+	var on := st == GameManager.GameState.PLAYING or st == GameManager.GameState.FALLING
+	_speed_lines.emitting = on
+	if on and player:
+		var sp := player.velocity.length()
+		_speed_lines.amount = mini(120, 55 + int(sp * 0.12))
 
 func _on_vox_pressed():
 	get_tree().change_scene_to_file(_Scenes.VOX_UI)

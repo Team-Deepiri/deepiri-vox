@@ -4,7 +4,7 @@ config_version=5
 [application]
 
 config/name="Voxier"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main_3d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,8 +23,9 @@ theme/custom="res://themes/deepiri_theme.tres"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
-window/size/resizable=false
+window/size/resizable=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -77,4 +78,6 @@ hop={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=1
+anti_aliasing/quality/msaa_2d=2
+anti_aliasing/quality/msaa_3d=1
