@@ -1,8 +1,8 @@
 # Godot cache
-GodotProject/.godot/
+Voxier/.godot/
 
 # Builds / exports
-GodotProject/build/
+Voxier/build/
 
 # Archives
 *.tar.gz

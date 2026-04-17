@@ -7,9 +7,9 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_DIR="$SCRIPT_DIR/GodotProject"
+PROJECT_DIR="$SCRIPT_DIR/Voxier"
 
-echo -e "${GREEN}🚀 Starting Deepiri Voxier (Godot)...${NC}"
+echo -e "${GREEN}Starting Voxier…${NC}"
 echo ""
 
 # Check for Godot

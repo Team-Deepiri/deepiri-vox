@@ -26,10 +26,10 @@ You need **Godot 4.2+** installed. You can use the provided setup script:
 
 ## Project Structure
 
-- `GodotProject/`: The complete application source (GDScript).
+- `Voxier/`: The Godot project (`project.godot` lives here; Godot does not require this folder name).
   - `scenes/vox_ui.tscn`: Repository analyzer UI.
   - `scenes/cat_pilot.tscn`: CLI game recreation.
-  - `scenes/main.tscn`: Main entry point and Fox Rocket game.
+  - `scenes/main.tscn`: Main entry and rocket-fox arcade.
 - `UnityProject/`: Placeholder for future expansion.
 
 ## Why Godot?

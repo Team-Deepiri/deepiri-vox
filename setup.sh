@@ -9,9 +9,9 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_DIR="$SCRIPT_DIR/GodotProject"
+PROJECT_DIR="$SCRIPT_DIR/Voxier"
 
-echo -e "${GREEN}🦊 Fox Rocket Arcade - Setup${NC}"
+echo -e "${GREEN}Voxier — Setup${NC}"
 echo ""
 
 # ============================================
@@ -75,16 +75,12 @@ if [ ! -f "$PROJECT_DIR/project.godot" ]; then
     exit 1
 fi
 
-# Import project in headless mode to generate .godot folder
+# Headless editor import (--import); plain --headless --path runs the game loop.
 echo -e "${BLUE}Importing project (first time setup)...${NC}"
 cd "$PROJECT_DIR"
 
-# Run Godot in headless to import assets
 export PATH="$HOME/.local/bin:$PATH"
-godot --headless --path . --script-setup 2>/dev/null || true
-
-# Wait for import
-sleep 2
+godot --headless --path . --import
 
 echo -e "${GREEN}✓ Project ready!${NC}"
 echo ""

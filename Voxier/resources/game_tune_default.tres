@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GameTune" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/game_tune.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+starting_lives = 5
+starting_score = 0
+initial_rocket_interval = 25.0
+min_rocket_interval = 8.0
+rocket_interval_shrink_on_catch = 2.0
+rocket_interval_shrink_on_hop = 1.0
