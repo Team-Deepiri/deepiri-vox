@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://main001"]
+[gd_scene load_steps=14 format=3 uid="uid://main001"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Script" path="res://scripts/background_manager.gd" id="2_bg"]
@@ -9,9 +9,17 @@
 [ext_resource type="Script" path="res://scripts/juice/camera_juice.gd" id="7_juice"]
 [ext_resource type="PackedScene" path="res://scenes/fx/vignette_layer.tscn" id="8_vig"]
 [ext_resource type="PackedScene" path="res://scenes/fx/scanline_layer.tscn" id="9_scan"]
+[ext_resource type="Shader" path="res://shaders/cinematic_post.gdshader" id="10_cine"]
+[ext_resource type="Script" path="res://scripts/fx/cinematic_post_driver.gd" id="11_cdrv"]
 
 [sub_resource type="RectangleShape2D" id="playerc"]
 size = Vector2(30, 40)
+
+[sub_resource type="ShaderMaterial" id="cine_mat"]
+shader = ExtResource("10_cine")
+shader_parameter/perspective_mix = 0.5
+shader_parameter/speed_streak = 0.0
+shader_parameter/chroma_strength = 0.0045
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -170,8 +178,39 @@ position = Vector2(400, 300)
 current = true
 script = ExtResource("7_juice")
 
+[node name="SpeedFX" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="SpeedLines" type="CPUParticles2D" parent="SpeedFX"]
+position = Vector2(400, 640)
+emitting = true
+amount = 80
+lifetime = 0.62
+randomness = 0.55
+emission_shape = 2
+emission_box_extents = Vector2(390, 14)
+direction = Vector2(0, -1)
+spread = 18.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 220.0
+initial_velocity_max = 620.0
+scale_amount_min = 0.25
+scale_amount_max = 1.05
+color = Color(1, 0.92, 0.78, 0.42)
+
 [node name="PostFX" type="CanvasLayer" parent="."]
 layer = 6
+
+[node name="CinematicDistort" type="ColorRect" parent="PostFX"]
+material = SubResource("cine_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+script = ExtResource("11_cdrv")
 
 [node name="VignetteLayer" parent="PostFX" instance=ExtResource("8_vig")]
 

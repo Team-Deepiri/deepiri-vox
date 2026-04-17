@@ -3,6 +3,7 @@ extends CharacterBody2D
 const MOVE_SPEED := 300.0
 const FIRE_COOLDOWN := 0.11
 const ImpactParticles := preload("res://scripts/juice/impact_particles.gd")
+const _RimShader := preload("res://shaders/fox_sprite_rim.gdshader")
 
 var move_vel := Vector2.ZERO
 var current_rocket: Node2D
@@ -10,6 +11,7 @@ var is_alive := true
 var falling := false
 var _fire_cd := 0.0
 var _invuln := 0.0
+var _hero: Sprite2D
 
 @onready var body: Polygon2D = $Body
 @onready var head: Polygon2D = $Head
@@ -17,6 +19,7 @@ var _invuln := 0.0
 
 func _ready() -> void:
 	add_to_group("player")
+	_setup_hero_sprite()
 
 func is_invulnerable() -> bool:
 	return _invuln > 0.0
@@ -92,6 +95,8 @@ func dismount_rocket() -> void:
 func die_visual_only() -> void:
 	is_alive = false
 	visible = false
+	if _hero:
+		_hero.visible = false
 	var scene := get_tree().current_scene
 	if scene:
 		ImpactParticles.burst(scene, global_position, Color(1, 0.35, 0.2), 40)
@@ -103,6 +108,26 @@ func revive() -> void:
 	position = Vector2(400, 480)
 	modulate = Color.WHITE
 	_invuln = 0.0
+	if _hero:
+		_hero.visible = true
+
+
+func _setup_hero_sprite() -> void:
+	_hero = Sprite2D.new()
+	_hero.name = "HeroSprite"
+	_hero.texture = FoxTextureBuilder.create_texture()
+	_hero.centered = true
+	_hero.position = Vector2(0, -6)
+	_hero.scale = Vector2(0.44, 0.44)
+	_hero.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var rim := ShaderMaterial.new()
+	rim.shader = _RimShader
+	rim.set_shader_parameter("rim", 0.42)
+	_hero.material = rim
+	add_child(_hero)
+	for c in get_children():
+		if c is Polygon2D:
+			(c as CanvasItem).visible = false
 
 func _on_area_entered(area: Area2D) -> void:
 	if not is_alive or GameManager.state != GameManager.GameState.PLAYING:

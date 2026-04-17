@@ -83,5 +83,6 @@ func reset():
 	if camera:
 		camera.position = Vector2(400, 300)
 		camera.rotation_degrees = 0
+		camera.skew = 0.0
 	if world_container:
 		world_container.rotation_degrees = 0
